@@ -1,13 +1,43 @@
-require("./node_modules/bootstrap/dist/css/bootstrap.min.css")
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider, connect } from 'react-redux';
+import { Router, Route, IndexRoute } from 'react-router';
+import { syncReduxAndRouter } from 'redux-simple-router';
+import { createHashHistory } from 'history';
+import configureStore from './store';
+import Player from './components/Player.js';
+import Search from './components/Search.js';
 
-export class App extends React.Component {
-  render() {
-    return (
-      <div>Karaoke HERE!</div>
-    );
+const initialState = {
+  search: {
+    text: '',
+    results: []
   }
+};
+const store = configureStore(initialState);
+const history = createHashHistory();
+
+syncReduxAndRouter(history, store);
+
+function Root(props) {
+  return (
+    <Provider store={store}>
+      <Router history={history}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Search} />
+          <Route path="player" component={Player} />
+        </Route>
+      </Router>
+    </Provider>
+  );
 }
 
-ReactDOM.render(<App/>, document.querySelector("#karaoke"));
+function App(props) {
+  return (
+    <div>
+      {props.children}
+    </div>
+  )
+}
+
+ReactDOM.render(<Root/>, document.querySelector("#mount"));

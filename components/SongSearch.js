@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { songSearch } from '../actions';
-import { debounce } from '../util';
 
 function SongSearch(props) {
 
-  const onKeyUp = debounce(function(e) {
+  const onKeyUp = function(e) {
     props.onChange(e.target.value)
-  }, 300);
+  }
 
   return (
     <div>
@@ -21,7 +20,7 @@ function SongSearch(props) {
       <div>
         {props.results.map((v) => {
           return (
-            <div className="videoResult">
+            <div className="videoResult" key={v.id}>
               <h4>{v.title}</h4>
               <img src={v.thumbUrl} />
             </div>

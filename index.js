@@ -5,8 +5,8 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { syncReduxAndRouter } from 'redux-simple-router';
 import { createHashHistory } from 'history';
 import configureStore from './store';
-import Player from './components/Player.js';
-import Search from './components/Search.js';
+import Player from './components/Player';
+import Search from './components/Search';
 
 const initialState = {
   search: {

@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import settings from './settings';
 import { debounce } from './util';
+import { playlistRef } from './firebaseService';
+console.log(playlistRef);
 
 export const SONG_SEARCH = 'SONG_SEARCH';
 export const SONG_SEARCH_TEXT = 'SONG_SEARCH_TEXT';
@@ -26,7 +28,7 @@ const querySongs = debounce(function(text, dispatch) {
       'type=video',
       'part=snippet',
       'videoEmbeddable=true',
-      'maxResults=20',
+      'maxResults=40',
       'key=' + settings.youtube.apiKey,
       'q=' + encodeURIComponent(text + ' karaoke'),
     ]
@@ -48,3 +50,11 @@ const querySongs = debounce(function(text, dispatch) {
 export function songSearchText(text) {
   return { type: SONG_SEARCH_TEXT, text: text };
 }
+
+export function playlistAddSong(song) {
+  return function(dispatch, getState) {
+    playlistRef.push(song)
+  }
+}
+
+export function queueRemoveSong() {}

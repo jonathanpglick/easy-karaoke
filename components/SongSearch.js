@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { songSearch } from '../actions';
+import { songSearch, playlistAddSong } from '../actions';
 
 function SongSearch(props) {
 
@@ -18,11 +18,11 @@ function SongSearch(props) {
       />
 
       <div>
-        {props.results.map((v) => {
+        {props.results.map((song) => {
           return (
-            <div className="videoResult" key={v.id}>
-              <h4>{v.title}</h4>
-              <img src={v.thumbUrl} />
+            <div className="videoResult" key={song.id} onClick={props.onSelect.bind(null, song)}>
+              <h4>{song.title}</h4>
+              <img src={song.thumbUrl} />
             </div>
           )
         })}
@@ -36,7 +36,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  onChange: songSearch
+  onChange: songSearch,
+  onSelect: playlistAddSong
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SongSearch);

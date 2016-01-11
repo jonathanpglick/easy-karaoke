@@ -28,7 +28,7 @@ const querySongs = debounce(function(text, dispatch) {
       'type=video',
       'part=snippet',
       'videoEmbeddable=true',
-      'maxResults=40',
+      'maxResults=10',
       'key=' + settings.youtube.apiKey,
       'q=' + encodeURIComponent(text + ' karaoke'),
     ]
@@ -53,11 +53,15 @@ export function songSearchText(text) {
 
 export function playlistAddSong(song) {
   return function(dispatch, getState) {
-    const songRef = playlistRef.push(song)
+    playlistRef.push(song);
   }
 }
 
-export function queueRemoveSong() {}
+export function playlistRemoveSong(firebaseId) {
+  return function(dispatch, getState) {
+    playlistRef.child(firebaseId).remove();
+  }
+}
 
 export function playlistUpdate(playlist) {
   return { type: PLAYLIST_UPDATE, playlist: playlist };

@@ -4,7 +4,7 @@ import SongSearch from './SongSearch';
 function Search(props) {
   return (
     <div>
-      <a href="#/player" target="_blank">New Room</a>
+      <a href="#/player" target="_blank">Launch Player</a>
       <div>
         <SongSearch />
       </div>

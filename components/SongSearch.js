@@ -20,14 +20,20 @@ function SongSearch(props) {
 
       <div>
         {props.results.map((song) => {
-          let alreadySelected = undefined;
+
+          let addButton = undefined;
           if (inArray(props.songIdsInPlaylist, song.id)) {
-            alreadySelected = (<strong><em>Already Selected!!!</em></strong>);
+            addButton = (<strong><em>Already Selected!!!</em></strong>);
           }
+          else {
+            addButton = (<button onClick={props.onSelect.bind(null, song)}>+ Add</button>);
+          }
+
           return (
-            <div className="videoResult" key={song.id} onClick={props.onSelect.bind(null, song)}>
-              <h4>{song.title} {alreadySelected}</h4>
+            <div className="videoResult" key={song.id}>
+              <h4>{song.title}</h4>
               <img src={song.thumbUrl} />
+              {addButton}
             </div>
           )
         })}

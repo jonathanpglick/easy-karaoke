@@ -12,3 +12,7 @@ export function debounce(func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 };
+
+export function inArray(arr, val) {
+  return arr.indexOf(val) >= 0;
+}

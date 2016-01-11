@@ -3,7 +3,8 @@ import { routeReducer } from 'redux-simple-router';
 import {
   SONG_SEARCH,
   SONG_SEARCH_TEXT,
-  SONG_SEARCH_RESULTS
+  SONG_SEARCH_RESULTS,
+  PLAYLIST_UPDATE
 } from './actions';
 
 function searchReducer(state = {}, action) {
@@ -23,9 +24,17 @@ function searchReducer(state = {}, action) {
   }
 }
 
+function playlistReducer(playlist = [], action) {
+  if (action.type === PLAYLIST_UPDATE) {
+    return action.playlist;
+  }
+  return playlist
+}
+
 const rootReducer = combineReducers({
   routing: routeReducer,
-  search: searchReducer
+  search: searchReducer,
+  playlist: playlistReducer
 });
 
 export default rootReducer;

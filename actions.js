@@ -2,11 +2,11 @@ import fetch from 'isomorphic-fetch';
 import settings from './settings';
 import { debounce } from './util';
 import { playlistRef } from './firebaseService';
-console.log(playlistRef);
 
 export const SONG_SEARCH = 'SONG_SEARCH';
 export const SONG_SEARCH_TEXT = 'SONG_SEARCH_TEXT';
 export const SONG_SEARCH_RESULTS = 'SONG_SEARCH_RESULTS';
+export const PLAYLIST_UPDATE = 'PLAYLIST_UPDATE';
 
 export function songSearch(text) {
   return (dispatch, getState) => {
@@ -53,8 +53,12 @@ export function songSearchText(text) {
 
 export function playlistAddSong(song) {
   return function(dispatch, getState) {
-    playlistRef.push(song)
+    const songRef = playlistRef.push(song)
   }
 }
 
 export function queueRemoveSong() {}
+
+export function playlistUpdate(playlist) {
+  return { type: PLAYLIST_UPDATE, playlist: playlist };
+}

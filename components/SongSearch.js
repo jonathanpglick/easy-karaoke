@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { songSearch, playlistAddSong } from '../actions';
+import { inArray } from '../util';
 
 function SongSearch(props) {
 
@@ -19,9 +20,13 @@ function SongSearch(props) {
 
       <div>
         {props.results.map((song) => {
+          let alreadySelected = undefined;
+          if (inArray(props.songIdsInPlaylist, song.id)) {
+            alreadySelected = (<strong><em>Already Selected!!!</em></strong>);
+          }
           return (
             <div className="videoResult" key={song.id} onClick={props.onSelect.bind(null, song)}>
-              <h4>{song.title}</h4>
+              <h4>{song.title} {alreadySelected}</h4>
               <img src={song.thumbUrl} />
             </div>
           )
@@ -32,7 +37,11 @@ function SongSearch(props) {
 }
 
 function mapStateToProps(state) {
-  return state.search;
+  return {
+    text: state.search.text,
+    results: state.search.results,
+    songIdsInPlaylist: state.playlist.map((song) => song.id)
+  };
 }
 
 const mapDispatchToProps = {

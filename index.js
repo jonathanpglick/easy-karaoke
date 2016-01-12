@@ -9,6 +9,7 @@ import { playlistRef } from './firebaseService';
 import { playlistUpdate } from './actions';
 import Player from './components/Player';
 import Search from './components/Search';
+import './scss/main.scss';
 
 const initialState = {
   search: {

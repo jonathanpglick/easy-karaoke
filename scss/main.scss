@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+// Mixins
+@import "lib/materialize-src/sass/components/mixins";
+@import "lib/materialize-src/sass/components/color";
+
+// Variables
+@import "lib/materialize-src/sass/components/variables";
+
+// Variable Overrides
+$roboto-font-path: "lib/materialize-src/font/roboto/";
+$icons-font-path: "lib/materialize-src/font/material-design-icons/";
+
+// Reset
+@import "lib/materialize-src/sass/components/normalize";
+
+// components
+@import "lib/materialize-src/sass/components/global";
+@import "lib/materialize-src/sass/components/icons-material-design";
+//@import "lib/materialize-src/sass/components/grid";
+//@import "lib/materialize-src/sass/components/navbar";
+@import "lib/materialize-src/sass/components/roboto";
+@import "lib/materialize-src/sass/components/typography";
+//@import "lib/materialize-src/sass/components/cards";
+//@import "lib/materialize-src/sass/components/toast";
+//@import "lib/materialize-src/sass/components/tabs";
+//@import "lib/materialize-src/sass/components/tooltip";
+@import "lib/materialize-src/sass/components/buttons";
+//@import "lib/materialize-src/sass/components/dropdown";
+//@import "lib/materialize-src/sass/components/waves";
+//@import "lib/materialize-src/sass/components/modal";
+//@import "lib/materialize-src/sass/components/collapsible";
+//@import "lib/materialize-src/sass/components/chips";
+//@import "lib/materialize-src/sass/components/materialbox";
+@import "lib/materialize-src/sass/components/form";
+//@import "lib/materialize-src/sass/components/table_of_contents";
+//@import "lib/materialize-src/sass/components/sideNav";
+//@import "lib/materialize-src/sass/components/preloader";
+//@import "lib/materialize-src/sass/components/slider";
+//@import "lib/materialize-src/sass/components/carousel";
+//@import "lib/materialize-src/sass/components/date_picker/default.scss";
+//@import "lib/materialize-src/sass/components/date_picker/default.date.scss";
+//@import "lib/materialize-src/sass/components/date_picker/default.time.scss";
+
+body {
+  padding: $sidenav-padding-right;
+}
+@import 'search';

@@ -10,15 +10,27 @@ function SongSearch(props) {
   }
 
   return (
-    <div>
+    <div className="song-search">
       <input
-        className="song-search"
+        className="song-search-text"
         placeholder="Find a song"
         type="text"
         onKeyUp={onKeyUp}
       />
 
-      <div>
+      <SongSearchResults
+        results={props.results}
+        songIdsInPlaylist={props.songIdsInPlaylist}
+        onSelect={props.onSelect}
+      />
+    </div>
+  )
+}
+
+function SongSearchResults(props) {
+  if (props.results && props.results.length) {
+    return (
+      <ul className="collection">
         {props.results.map((song) => {
 
           let addButton = undefined;
@@ -26,20 +38,25 @@ function SongSearch(props) {
             addButton = (<strong><em>Already Selected!!!</em></strong>);
           }
           else {
-            addButton = (<button onClick={props.onSelect.bind(null, song)}>+ Add</button>);
+            addButton = (<a href="" className="btn" onClick={props.onSelect.bind(null, song)}>Sing!</a>);
           }
 
           return (
-            <div className="videoResult" key={song.id}>
-              <h4>{song.title}</h4>
-              <img src={song.thumbUrl} />
-              {addButton}
-            </div>
+            <li className="collection-item avatar video-result" key={song.id}>
+              <img src={song.thumbUrl} className="circle" />
+              <span className="title">{song.title}</span>
+              <span className="secondary-content">
+                {addButton}
+              </span>
+            </li>
           )
         })}
-      </div>
-    </div>
-  )
+      </ul>
+    );
+  }
+  else {
+    return <div></div>;
+  }
 }
 
 function mapStateToProps(state) {

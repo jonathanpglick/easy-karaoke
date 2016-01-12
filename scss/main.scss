@@ -45,4 +45,15 @@ $icons-font-path: "lib/materialize-src/font/material-design-icons/";
 body {
   padding: $sidenav-padding-right;
 }
+
+.btn {
+  &.btn-small {
+    padding: 0 1rem;
+    i.material-icons {
+      &.left {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
 @import 'search';

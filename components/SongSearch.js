@@ -35,10 +35,10 @@ function SongSearchResults(props) {
 
           let addButton = undefined;
           if (inArray(props.songIdsInPlaylist, song.id)) {
-            addButton = (<a href="" className="btn btn-small disabled"><i className="material-icons left">done</i> Added</a>);
+            addButton = (<span className="btn btn-small disabled"><i className="material-icons left">done</i> Added</span>);
           }
           else {
-            addButton = (<a href="" className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons left">add</i> Add</a>);
+            addButton = (<span className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons left">add</i> Add</span>);
           }
 
           return (

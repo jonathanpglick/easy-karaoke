@@ -8,6 +8,7 @@ const Player = (props) => {
   let video = (
     <p>First run instructions</p>
   );
+  let songPlaying = null;
   if (props.playlist.length) {
     const youtubeOpts = {
       playerVars: {
@@ -18,24 +19,30 @@ const Player = (props) => {
         showinfo: 0
       }
     };
-    const song = props.playlist[0];
+    songPlaying = props.playlist[0];
     video = (
-      <YoutubePlayer
-        videoId={song.id}
-        opts={youtubeOpts}
-        onEnd={props.playlistRemoveSong.bind(null, song.firebaseId)}
-      />
+      <div className="iframe-wrapper">
+        <YoutubePlayer
+          videoId={songPlaying.id}
+          opts={youtubeOpts}
+          onEnd={props.playlistRemoveSong.bind(null, songPlaying.firebaseId)}
+        />
+      </div>
     );
   }
 
   return (
-    <div>
-      <div className="player">
+    <div className="player-page">
+      <div className="video">
         {video}
       </div>
       <div className="playlist">
         {props.playlist.map((song) => {
-          return (<PlaylistItem song={song} onRemove={props.playlistRemoveSong.bind(null, song.firebaseId)} key={song.id} />);
+          return (<PlaylistItem 
+                    song={song}
+                    isPlaying={songPlaying.id === song.id}
+                    onRemove={props.playlistRemoveSong.bind(null, song.firebaseId)}
+                    key={song.id} />);
         })}
       </div>
     </div>
@@ -43,10 +50,17 @@ const Player = (props) => {
 }
 
 const PlaylistItem = (props) => {
+  let className = 'playlist-item';
+  if (props.isPlaying) {
+    className += ' playing';
+  }
+
   return (
-    <div className="playlist-item">
+    <div className={className}>
       <h3>{props.song.title}</h3>
-      <button onClick={props.onRemove}> X Remove</button>
+      <div className="actions">
+        <span className="remove" onClick={props.onRemove}>&times;</span>
+      </div>
     </div>
   );
 }

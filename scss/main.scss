@@ -43,7 +43,8 @@ $icons-font-path: "lib/materialize-src/font/material-design-icons/";
 //@import "lib/materialize-src/sass/components/date_picker/default.time.scss";
 
 body {
-  padding: $sidenav-padding-right;
+  margin: 0;
+  padding: 0;
 }
 
 .btn {
@@ -56,4 +57,7 @@ body {
     }
   }
 }
+
 @import 'search';
+
+@import 'player';

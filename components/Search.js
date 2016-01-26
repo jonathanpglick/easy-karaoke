@@ -3,7 +3,7 @@ import SongSearch from './SongSearch';
 
 function Search(props) {
   return (
-    <div>
+    <div className="page-search">
       <a href="#/player" target="_blank">Launch Player</a>
       <div>
         <SongSearch />

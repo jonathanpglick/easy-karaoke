@@ -1,0 +1,91 @@
+
+.player-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  .video {
+    flex-grow: 1;
+    position: relative;
+
+    .iframe-wrapper {
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  $action-width: 40px;
+  .playlist {
+    width: 250px;
+    overflow-y: scroll;
+    overflow-x: visible;
+    margin-left: -$action-width;
+    padding-left: $action-width;
+
+    .playlist-item {
+      padding: 1em;
+      position: relative;
+      background-color: #000;
+      transition: left 0.125s ease-out;
+      left: 0;
+
+      h3 {
+        font-size: $h6-fontsize;
+        font-weight: 300;
+        line-height: 1.2em;
+        color: #FFF;
+        opacity: 0.5;
+        margin: 0;
+      }
+
+      .actions {
+        width: $action-width;
+        position: absolute;
+        top: 0;
+        right: -$action-width;
+        text-align: right;
+        padding-top: 0.5em;
+
+        .remove {
+          display: block;
+          font-size: 32px;
+          width: 32px;
+          height: 32px;
+          text-align: center;
+          line-height: 1em;
+          color: #FFF;
+          opacity: 0.5;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      &.playing {
+        h3 {
+          font-size: 1.2em;
+          opacity: 0.75;
+        }
+      }
+
+      &:hover {
+        left: -$action-width;
+      }
+    }
+  }
+
+}

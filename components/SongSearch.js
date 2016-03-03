@@ -29,6 +29,7 @@ function SongSearch(props) {
 
 function SongSearchResults(props) {
   if (props.results && props.results.length) {
+    console.log(props.results);
     return (
       <ul className="collection">
         {props.results.map((song) => {
@@ -44,10 +45,12 @@ function SongSearchResults(props) {
           return (
             <li className="collection-item avatar video-result" key={song.id}>
               <img src={song.thumbUrl} className="circle" />
-              <span className="title">{song.title}</span>
-              <span className="secondary-content">
+              <span className="title-wrapper"><span className="title">{song.title}</span></span>
+              <div className="buttons">
                 {addButton}
-              </span>
+
+                <span className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons left">play_circle_outline</i> Preview</span>
+              </div>
             </li>
           )
         })}

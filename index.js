@@ -16,7 +16,8 @@ const initialState = {
     text: '',
     results: []
   },
-  playlist: []
+  playlist: [],
+  preview: false
 };
 const store = configureStore(initialState);
 const history = createHashHistory();

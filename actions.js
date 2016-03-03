@@ -7,6 +7,8 @@ export const SONG_SEARCH = 'SONG_SEARCH';
 export const SONG_SEARCH_TEXT = 'SONG_SEARCH_TEXT';
 export const SONG_SEARCH_RESULTS = 'SONG_SEARCH_RESULTS';
 export const PLAYLIST_UPDATE = 'PLAYLIST_UPDATE';
+export const VIDEO_PREVIEW = 'VIDEO_PREVIEW';
+export const VIDEO_PREVIEW_CLOSE = 'VIDEO_PREVIEW_CLOSE';
 
 export function songSearch(text) {
   return (dispatch, getState) => {
@@ -37,6 +39,7 @@ const querySongs = debounce(function(text, dispatch) {
       .then((resp) => resp.json())
       .then((resp) => {
         const videos = resp.items.map((i) => {
+          console.log(i);
           return {
             id: i.id.videoId,
             title: i.snippet.title,
@@ -65,4 +68,12 @@ export function playlistRemoveSong(firebaseId) {
 
 export function playlistUpdate(playlist) {
   return { type: PLAYLIST_UPDATE, playlist: playlist };
+}
+
+export function videoPreview(videoId) {
+  return { type: VIDEO_PREVIEW, id: videoId };
+}
+
+export function videoPreviewClose(videoId) {
+  return { type: VIDEO_PREVIEW_CLOSE };
 }

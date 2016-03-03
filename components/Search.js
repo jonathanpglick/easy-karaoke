@@ -12,4 +12,19 @@ function Search(props) {
   );
 }
 
+function VideoPreview(props) {
+
+  return (
+    <div className="video-preview-modal">
+      <div className="modal">
+        <div className="modal-content">
+          <div className="video-container">
+            <iframe width="320" height="240" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameBorder="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default Search

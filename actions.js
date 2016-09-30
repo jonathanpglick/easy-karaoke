@@ -26,20 +26,20 @@ export function songSearch(text) {
 }
 
 const querySongs = debounce(function(text, dispatch) {
+    const blacklist = settings.youtube.searchBlacklist.map((i) => '-'+i).join(' ')
     const query = [
       'type=video',
       'part=snippet',
       'videoEmbeddable=true',
       'maxResults=10',
       'key=' + settings.youtube.apiKey,
-      'q=' + encodeURIComponent(text + ' karaoke'),
+      'q=' + encodeURIComponent(text + ' karaoke ' + blacklist),
     ]
     const url = "https://www.googleapis.com/youtube/v3/search?" + query.join('&')
     fetch(url)
       .then((resp) => resp.json())
       .then((resp) => {
         const videos = resp.items.map((i) => {
-          console.log(i);
           return {
             id: i.id.videoId,
             title: i.snippet.title,

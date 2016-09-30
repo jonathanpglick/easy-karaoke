@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SongSearch from './SongSearch';
+import VideoPreview from './VideoPreview';
 
 function Search(props) {
   return (
@@ -8,23 +10,9 @@ function Search(props) {
       <div>
         <SongSearch />
       </div>
+      <VideoPreview />
     </div>
   );
-}
-
-function VideoPreview(props) {
-
-  return (
-    <div className="video-preview-modal">
-      <div className="modal">
-        <div className="modal-content">
-          <div className="video-container">
-            <iframe width="320" height="240" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameBorder="0"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
 }
 
 export default Search

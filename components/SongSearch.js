@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { songSearch, playlistAddSong } from '../actions';
+import {
+  songSearch,
+  videoPreview,
+  playlistRemoveSong
+} from '../actions';
 import { inArray } from '../util';
 
 function SongSearch(props) {
@@ -20,8 +24,9 @@ function SongSearch(props) {
 
       <SongSearchResults
         results={props.results}
-        songIdsInPlaylist={props.songIdsInPlaylist}
+        playlist={props.playlist}
         onSelect={props.onSelect}
+        onRemove={props.onRemove}
       />
     </div>
   )
@@ -29,14 +34,17 @@ function SongSearch(props) {
 
 function SongSearchResults(props) {
   if (props.results && props.results.length) {
-    console.log(props.results);
+    const songIdsInPlaylist = props.playlist.map((song) => song.id);
     return (
       <ul className="collection">
         {props.results.map((song) => {
 
           let addButton = undefined;
-          if (inArray(props.songIdsInPlaylist, song.id)) {
+          let removeButton = undefined;
+          if (inArray(songIdsInPlaylist, song.id)) {
             addButton = (<span className="btn btn-small disabled"><i className="material-icons left">done</i> Added</span>);
+            const firebaseId = props.playlist.filter((s) => song.id == s.id)[0]['firebaseId'];
+            removeButton = (<span className="btn btn-small" onClick={props.onRemove.bind(null, firebaseId)}><i className="material-icons left">clear</i> Remove</span>);
           }
           else {
             addButton = (<span className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons left">add</i> Add</span>);
@@ -48,8 +56,7 @@ function SongSearchResults(props) {
               <span className="title-wrapper"><span className="title">{song.title}</span></span>
               <div className="buttons">
                 {addButton}
-
-                <span className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons left">play_circle_outline</i> Preview</span>
+                {removeButton}
               </div>
             </li>
           )
@@ -66,13 +73,14 @@ function mapStateToProps(state) {
   return {
     text: state.search.text,
     results: state.search.results,
-    songIdsInPlaylist: state.playlist.map((song) => song.id)
+    playlist: state.playlist
   };
 }
 
 const mapDispatchToProps = {
   onChange: songSearch,
-  onSelect: playlistAddSong
+  onSelect: videoPreview,
+  onRemove: playlistRemoveSong,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SongSearch);

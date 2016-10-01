@@ -23,4 +23,16 @@ If you want to run with webpack-dev-server simply run this command:
 > $ npm run dev
 ```
 
+Building for procution:
+
+```
+> $ npm run build-prod
+```
+
 Open the web browser to `http://localhost:8888/`
+
+### Deploying
+
+```
+> $ sh deploy.sh
+```

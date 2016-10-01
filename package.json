@@ -5,6 +5,7 @@
   "main": "''",
   "scripts": {
     "build": "webpack --progress --profile --colors",
+    "build-prod": "webpack -p --progress --profile --colors --config ./webpack.production.config.js",
     "dev": "webpack-dev-server --progress --profile --colors --hot --port 8888"
   },
   "repository": {
@@ -35,6 +36,7 @@
     "babel-preset-react": "6.3.13",
     "css-loader": "0.23.1",
     "file-loader": "0.8.4",
+    "html-webpack-plugin": "^2.22.0",
     "react-hot-loader": "1.2.7",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",

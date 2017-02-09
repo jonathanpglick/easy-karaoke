@@ -1,5 +1,5 @@
 
-.page-search {
+.page-content {
   padding: $sidenav-padding-right;
 }
 
@@ -30,6 +30,30 @@
     }
   }
 
+  .welcome-content {
+    background-color: #f5f5f5;
+    padding: $sidenav-padding-right*2;
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+}
+
+.btn-warn {
+  @extend .red;
+}
+
+.song--item--content {
+  display: flex;
+  flex-direction: row;
+
+  .song--item--title {
+    flex-grow: 1;
+    padding-right: 0.5em;
+  }
+
+  .song--item--buttons {
+  }
 }
 
 .video-preview-modal {
@@ -45,7 +69,7 @@
   }
 
   position: fixed;
-  top: 0;
+  top: $navbar-height;
   left: 0;
   right: 0;
   bottom: 0;
@@ -65,28 +89,32 @@
     .modal-content {
       padding: 10px;
 
-      .video-container {
+      .video {
+        iframe {
+          display: block;
+          max-height: 240px;
+          margin: 0 auto;
+        }
       }
       h4 {
-        margin: 0.5em 0;
+        margin: 0;
         font-size: 1.8rem;
         text-align: center;
       }
       .buttons {
+        text-align: center;
+        margin: 1em 0;
+
         .btn-small {
+          display: inline-block;
           font-size: 0.8rem;
           height: 32px;
           line-height: 32px;
-          padding: 0 0.5em;
-          margin-top: 0.5em;
-          margin-right: 0.5em;
+          padding-right: 1.75em;
+          margin: 0 0.5em;
 
           i {
             font-size: 1.3rem;
-          }
-
-          &.btn-right {
-            float: right;
           }
         }
       }

@@ -9,6 +9,7 @@ import { playlistRef } from './firebaseService';
 import { playlistUpdate } from './actions';
 import Player from './components/Player';
 import Search from './components/Search';
+import Queue from './components/Queue';
 import './scss/main.scss';
 
 const initialState = {
@@ -42,6 +43,7 @@ function Root(props) {
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Search} />
+          <Route path="queue" component={Queue} />
           <Route path="player" component={Player} />
         </Route>
       </Router>

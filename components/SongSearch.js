@@ -13,21 +13,30 @@ function SongSearch(props) {
     props.onChange(e.target.value)
   }
 
+  const content = props.results.length ? (
+    <SongSearchResults
+      results={props.results}
+      playlist={props.playlist}
+      onSelect={props.onSelect}
+      onRemove={props.onRemove}
+    />
+  )
+  : (
+    <div className="welcome-content">
+      <p>Search for a song above and hit the <strong>+</strong> button to add it to the queue.</p>
+    </div>
+  );
+
   return (
     <div className="song-search">
       <input
         className="song-search-text"
-        placeholder="Find a song"
+        placeholder="Search songs"
         type="text"
         onKeyUp={onKeyUp}
       />
 
-      <SongSearchResults
-        results={props.results}
-        playlist={props.playlist}
-        onSelect={props.onSelect}
-        onRemove={props.onRemove}
-      />
+      {content}
     </div>
   )
 }
@@ -42,21 +51,22 @@ function SongSearchResults(props) {
           let addButton = undefined;
           let removeButton = undefined;
           if (inArray(songIdsInPlaylist, song.id)) {
-            addButton = (<span className="btn btn-small disabled"><i className="material-icons left">done</i> Added</span>);
             const firebaseId = props.playlist.filter((s) => song.id == s.id)[0]['firebaseId'];
-            removeButton = (<span className="btn btn-small" onClick={props.onRemove.bind(null, firebaseId)}><i className="material-icons left">clear</i> Remove</span>);
+            removeButton = (<span className="btn btn-small btn-warn" onClick={props.onRemove.bind(null, firebaseId)}><i className="material-icons">clear</i></span>);
           }
           else {
-            addButton = (<span className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons left">add</i> Add</span>);
+            addButton = (<span className="btn btn-small" onClick={props.onSelect.bind(null, song)}><i className="material-icons">add</i></span>);
           }
 
           return (
             <li className="collection-item avatar video-result" key={song.id}>
               <img src={song.thumbUrl} className="circle" />
-              <span className="title-wrapper"><span className="title">{song.title}</span></span>
-              <div className="buttons">
-                {addButton}
-                {removeButton}
+              <div className="song--item--content">
+                <span className="song--item--title"><span className="title">{song.title}</span></span>
+                <div className="song--item--buttons">
+                  {addButton}
+                  {removeButton}
+                </div>
               </div>
             </li>
           )

@@ -10,6 +10,7 @@ import { playlistUpdate } from './actions';
 import Player from './components/Player';
 import Search from './components/Search';
 import Queue from './components/Queue';
+import { trackPage } from './analytics';
 import './scss/main.scss';
 
 const initialState = {
@@ -40,7 +41,7 @@ syncReduxAndRouter(history, store);
 function Root(props) {
   return (
     <Provider store={store}>
-      <Router history={history}>
+      <Router history={history} onUpdate={trackPage}>
         <Route path="/" component={App}>
           <IndexRoute component={Search} />
           <Route path="queue" component={Queue} />

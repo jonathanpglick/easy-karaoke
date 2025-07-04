@@ -2,3 +2,5 @@ logs
 *.log
 node_modules
 .sass-cache
+public/bundle.js
+public/bundle.js.map

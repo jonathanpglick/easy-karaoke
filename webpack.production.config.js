@@ -64,6 +64,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'public/index.production.html'
-        })
+        }),
+        new webpack.EnvironmentPlugin(['GOOGLE_API_KEY'])
     ]
 };

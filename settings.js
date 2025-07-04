@@ -1,6 +1,6 @@
 export default {
   youtube: {
-    apiKey: 'AIzaSyDEvQJ2D41ShIk2wLEFt6BySR05GL8gPDM',
+    apiKey: process.env.GOOGLE_API_KEY,
     searchBlacklist: []
   },
   firebase: {

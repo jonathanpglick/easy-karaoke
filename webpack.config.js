@@ -69,6 +69,7 @@ module.exports = {
         inline: true
     },
     plugins: [
-      new webpack.NoErrorsPlugin()
+      new webpack.NoErrorsPlugin(),
+      new webpack.EnvironmentPlugin(['GOOGLE_API_KEY'])
     ]
 };

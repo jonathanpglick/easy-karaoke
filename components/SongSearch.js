@@ -9,8 +9,10 @@ import { inArray } from '../util';
 
 function SongSearch(props) {
 
-  const onKeyUp = function(e) {
-    props.onChange(e.target.value)
+  const onSubmit = function(e) {
+    e.preventDefault();
+    var input = document.getElementById("search-song-text");
+    props.onSearch(input.value)
   }
 
   const content = props.results.length ? (
@@ -29,12 +31,14 @@ function SongSearch(props) {
 
   return (
     <div className="song-search">
-      <input
-        className="song-search-text"
-        placeholder="Search songs"
-        type="text"
-        onKeyUp={onKeyUp}
-      />
+      <form onSubmit={onSubmit}>
+        <input
+          id="search-song-text"
+          className="song-search-text"
+          placeholder="Search songs"
+          type="text"
+        />
+      </form>
 
       {content}
     </div>
@@ -88,7 +92,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  onChange: songSearch,
+  onSearch: songSearch,
   onSelect: videoPreview,
   onRemove: playlistRemoveSong,
 };

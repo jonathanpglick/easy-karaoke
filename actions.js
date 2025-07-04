@@ -2,7 +2,6 @@ import fetch from 'isomorphic-fetch';
 import settings from './settings';
 import { debounce } from './util';
 import { playlistRef } from './firebaseService';
-import { trackEvent } from './analytics';
 
 export const SONG_SEARCH = 'SONG_SEARCH';
 export const SONG_SEARCH_TEXT = 'SONG_SEARCH_TEXT';
@@ -27,11 +26,6 @@ export function songSearch(text) {
 }
 
 const querySongs = debounce(function(text, dispatch) {
-    trackEvent('event', 'search', {
-      'event_category': 'engagement',
-      'event_label': 'search_term',
-      'value': text,
-    });
     const blacklist = settings.youtube.searchBlacklist.map((i) => '-'+i).join(' ')
     const query = [
       'type=video',

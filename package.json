@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Karaoke player",
   "main": "''",
+  "engines": {
+    "node": "^6.17.1"
+  },
   "scripts": {
     "build": "webpack --progress --profile --colors",
     "build-prod": "webpack -p --progress --profile --colors --config ./webpack.production.config.js",

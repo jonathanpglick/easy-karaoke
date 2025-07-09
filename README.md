@@ -3,6 +3,22 @@
 Queue and play karaoke songs from YouTube.
 
 
+### Installation
+
+Install the languages defined in `.tool-versions`.
+
+```
+$ asdf install
+```
+
+Install node/npm dependencies.
+
+```
+$ npm install
+```
+
+Configure a Google API key as an env var (see below).
+
 ### To run
 
 Install webpack and the development server:
@@ -23,14 +39,15 @@ If you want to run with webpack-dev-server simply run this command:
 > $ npm run dev
 ```
 
-Building for procution:
+Open the web browser to `http://localhost:8888/`
+
+To build for procution:
 
 ```
 > $ npm run build-prod
 ```
 
-Open the web browser to `http://localhost:8888/`
-
+The prod build will be output to `dist/`, copied to the server, and `dist/` deleted.
 
 ### Google API keys
 
